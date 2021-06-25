@@ -13,18 +13,24 @@ namespace subtitles
             string[] file = File.ReadAllLines("input.txt");
             List<Subtitle> subtitles = ReadFile(file);
             
-            while (subtitles.Count != 0) {
+            while (subtitles.Count != 0)
+            {
                 List<Subtitle> temp1 = new List<Subtitle>();
                 List<Subtitle> temp2 = new List<Subtitle>();
-                foreach (var element in subtitles) {
-                    if (inSecond >= element.Start && inSecond <= element.End) {
+                foreach (var element in subtitles) 
+                {
+                    if (inSecond >= element.Start && inSecond <= element.End) 
+                    {
                         temp2.Add(element);
-                    }else if (inSecond > element.End) {
+                    }
+                    else if (inSecond > element.End) 
+                    {
                         temp1.Add(element);
                     }
                 }
                 Console.Clear();
-                foreach (var element in temp2) {
+                foreach (var element in temp2) 
+                {
                     Drawer.CreatePosition(element.Position, element.Text);
                     Drawer.CreateColor(element.Color);
                     Console.WriteLine(element.Text);
@@ -32,7 +38,8 @@ namespace subtitles
                 Thread.Sleep(1000);
                 subtitles.RemoveAll(elem => temp1.Contains(elem));
                 inSecond++;
-                foreach (var element in temp2) {
+                foreach (var element in temp2) 
+                {
                     Console.WriteLine(element.Text);
                 }
             }
@@ -48,15 +55,20 @@ namespace subtitles
                 string position = string.Empty;
                 string color = string.Empty;
                 string text = string.Empty;
-                if (str[3].Contains('[')) {
+                if (str[3].Contains('[')) 
+                {
                     string str1 = str[3].Remove(str[3].IndexOf('['), 1);
                     position = str1.Remove(str1.IndexOf(','), 1);
                     color = str[4].Remove(str[4].IndexOf(']'), 1);
-                    for (int j = 5; j < str.Length; j++) {
+                    for (int j = 5; j < str.Length; j++) 
+                    {
                         text += str[j] + " ";
                     }
-                }else {
-                    for (int j = 3; j < str.Length; j++) {
+                }
+                else 
+                {
+                    for (int j = 3; j < str.Length; j++) 
+                    {
                         text += str[j] + " ";
                     }
                 }
@@ -88,8 +100,10 @@ namespace subtitles
     static class Drawer
     {
         public static void CreatePosition(string position, string text) {
-            if (position != string.Empty) {
-                switch (position) {
+            if (position != string.Empty) 
+            {
+                switch (position) 
+                {
                     case "Top" :
                         Console.SetCursorPosition(Console.WindowWidth / 2 - text.Length / 2, 0);
                         break;
@@ -103,13 +117,17 @@ namespace subtitles
                         Console.SetCursorPosition(text.Length, Console.WindowHeight / 2 );
                         break;
                 }
-            }else {
+            }
+            else 
+            {
                 Console.SetCursorPosition(Console.WindowWidth / 2 - text.Length / 2, Console.WindowHeight / 2);
             }
         }
         public static void CreateColor(string color) {
-            if (color != string.Empty) {
-                switch (color) {
+            if (color != string.Empty) 
+            {
+                switch (color) 
+                {
                     case "Red" :
                         Console.ForegroundColor = ConsoleColor.Red;
                         break;
@@ -120,7 +138,9 @@ namespace subtitles
                         Console.ForegroundColor = ConsoleColor.Blue;
                         break;
                 }
-            }else {
+            }
+            else 
+            {
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }

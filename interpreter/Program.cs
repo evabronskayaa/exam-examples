@@ -22,38 +22,44 @@ namespace interpreter
                 string[] str = file[i].Split(' ');
                 str[1] = str[1].Replace(",", "");
 
-                if (str[0] == "var") {
+                if (str[0] == "var") 
+                {
                     dictionary.Add(str[1], 0);
-                }else if (str[0] == "mov") {
-                    if (dictionary.ContainsKey(str[2])){
+                }
+                else if (str[0] == "mov") 
+                {
+                    if (dictionary.ContainsKey(str[2]))
                         dictionary[str[1]] = dictionary[str[2]];
-                    }else {
+                    else 
                         dictionary[str[1]] = double.Parse(str[2]);
-                    }
-                }else if (file[i].StartsWith("add")) {
-                    if (dictionary.ContainsKey(str[2])) {
+                }
+                else if (file[i].StartsWith("add")) 
+                {
+                    if (dictionary.ContainsKey(str[2])) 
                         dictionary[str[1]] += dictionary[str[2]];
-                    }else {
+                    else 
                         dictionary[str[1]] += double.Parse(str[2]);
-                    }
-                }else if (file[i].StartsWith("sub")) {
-                    if (dictionary.ContainsKey(str[2])) {
+                }
+                else if (file[i].StartsWith("sub")) 
+                {
+                    if (dictionary.ContainsKey(str[2])) 
                         dictionary[str[1]] -= dictionary[str[2]];
-                    }else {
+                    else 
                         dictionary[str[1]] -= double.Parse(str[2]);
-                    }
-                }else if (file[i].StartsWith("mul")) {
-                    if (dictionary.ContainsKey(str[2])) {
+                }
+                else if (file[i].StartsWith("mul")) 
+                {
+                    if (dictionary.ContainsKey(str[2])) 
                         dictionary[str[1]] *= dictionary[str[2]];
-                    }else {
+                    else 
                         dictionary[str[1]] *= double.Parse(str[2]);
-                    }
-                }else {
-                    if (dictionary.ContainsKey(str[2])) {
+                }
+                else 
+                {
+                    if (dictionary.ContainsKey(str[2])) 
                         dictionary[str[1]] /= dictionary[str[2]];
-                    }else {
+                    else 
                         dictionary[str[1]] /= double.Parse(str[2]);
-                    }
                 }
             }
             return dictionary;

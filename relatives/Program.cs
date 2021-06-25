@@ -12,15 +12,18 @@ namespace relatives
             string[] file = File.ReadAllLines("data.txt");
             List<string> pattern = new List<string>(file[0].Split(';'));
 
-            for (int i = 1; i < file.Length; i++) {
-                if (!file[i].Equals("") && !file[i].Contains("<->")) {
+            for (int i = 1; i < file.Length; i++) 
+            {
+                if (!file[i].Equals("") && !file[i].Contains("<->")) 
+                {
                     string[] parts = file[i].Split(';');
                     int id = int.Parse(parts[pattern.IndexOf("Id")]);
                     DateTime birthDate = DateTime.Parse(parts[pattern.IndexOf("BirthDate")]);
                     people.Add(id, new Person(id, parts[pattern.IndexOf("LastName")], parts[pattern.IndexOf("FirstName")], birthDate));
                 }
 
-                if (file[i].Contains("<->")) {
+                if (file[i].Contains("<->")) 
+                {
                     FillPersonRelationship(file[i]);
                 }
             }
@@ -36,13 +39,11 @@ namespace relatives
         }
 
         private static RelationshipType GetRelationType(string relation) {
-            if (relation == "spouse") {
-                return RelationshipType.SPOUSE;
-            }else if (relation == "sibling") {
-                return RelationshipType.SIBLING;
-            }else {
-                return RelationshipType.PARENT;
-            }
+            return relation == "spouse"
+                ? RelationshipType.SPOUSE
+                : relation == "sibling"
+                    ? RelationshipType.SIBLING
+                    : RelationshipType.PARENT;
         }
     }
 

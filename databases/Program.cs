@@ -17,7 +17,8 @@ namespace databases
 
         private static void AddTableValues(string tableName, int columnsCount, int rowsCount) {
             Column[] columns = new Column[columnsCount];
-            for (int i = 0; i < columnsCount; i++) {
+            for (int i = 0; i < columnsCount; i++) 
+            {
                 Console.WriteLine("Введите название столбца и тип данных:");
                 string[] text = Console.ReadLine().Split(';');
                 
@@ -27,12 +28,14 @@ namespace databases
             }
 
             Table table = new Table(columns);
-            for(int i = 0; i < rowsCount; i++) {
+            for(int i = 0; i < rowsCount; i++)
+            {
                 Console.WriteLine("Введите значения:");
                 string[] text = Console.ReadLine().Split(';');
                 
                 object[] values = new object[columnsCount];
-                for (int j = 0; j < text.Length; j++) {
+                for (int j = 0; j < text.Length; j++) 
+                {
                     values[j] = Serialize(columns[j].Type, text[j]);
                 }
 
@@ -55,15 +58,18 @@ namespace databases
             File.AppendAllText("tables.txt","\n");
         }
         private static void GetTypeTable(Table table) {
-            foreach (var column in table.Columns) {
+            foreach (var column in table.Columns) 
+            {
                 File.AppendAllText("tables.txt",column.Name + ";" +column.Type + ";");
                 File.AppendAllText("tables.txt","\n");
             }
         }
 
         private static void GetValueTable(Table table) {
-            foreach (var column in table.TableRows) {
-                foreach (var row in column.TableRow) {
+            foreach (var column in table.TableRows) 
+            {
+                foreach (var row in column.TableRow) 
+                {
                     File.AppendAllText("tables.txt",row + ";");
                 }
                 File.AppendAllText("tables.txt","\n");
@@ -71,23 +77,21 @@ namespace databases
         }
 
         private static DataType GetType(string text) {
-            if (text == "INT") {
+            if (text == "INT") 
                 return DataType.INT;
-            } else if (text == "STRING") {
+            else if (text == "STRING") 
                 return DataType.STRING;
-            } else {
+            else 
                 return DataType.BOOLEAN;
-            }
         }
 
         private static object Serialize(DataType type, string s) {
-            if (type == DataType.INT) {
+            if (type == DataType.INT)
                 return int.Parse(s);
-            } else if (type == DataType.BOOLEAN) {
+            else if (type == DataType.BOOLEAN) 
                 return bool.Parse(s);
-            } else {
+            else
                 return s;
-            }
         }
     }
 
