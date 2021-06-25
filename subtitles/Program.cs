@@ -106,7 +106,6 @@ namespace subtitles
             }else {
                 Console.SetCursorPosition(Console.WindowWidth / 2 - text.Length / 2, Console.WindowHeight / 2);
             }
-
         }
         public static void CreateColor(string color) {
             if (color != string.Empty) {

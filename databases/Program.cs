@@ -4,7 +4,7 @@ using System.IO;
 
 namespace databases
 {
-        class Program
+    class Program
     {
         static void Main(string[] args)
         {
